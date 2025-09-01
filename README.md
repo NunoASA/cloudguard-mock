@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CloudGuard Mock - SOC Dashboard
+
+A responsive Security Operations Center (SOC) dashboard built with Next.js and React Query. This application simulates a real-world cybersecurity monitoring interface used by security analysts to track incidents, monitor system health, and manage security operations.
+
+## Features
+
+- **Real-time Dashboard**: Security metrics, incident tracking, and system monitoring
+- **Responsive Design**: Desktop sidebar navigation, mobile bottom navigation
+- **Incident Management**: Comprehensive incident cards with severity indicators
+- **Modern Architecture**: React Query for data fetching, TypeScript, Tailwind CSS
+
+## Tech Stack
+
+- **Next.js 15** - React framework with App Router
+- **React 19** - UI library with modern hooks
+- **TypeScript** - Type safety
+- **@tanstack/react-query** - Server state management
+- **Tailwind CSS** - Utility-first styling
+- **Jest & Testing Library** - Testing framework
+- **ESLint** - Code linting
 
 ## Getting Started
 
-First, run the development server:
-
+### Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Commands
 
-## Learn More
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server with Turbopack |
+| `npm run build` | Build production application |
+| `npm start` | Start production server |
+| `npm run lint` | Run ESLint code linting |
+| `npm test` | Run Jest tests |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run test:coverage` | Run tests with coverage report |
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/                    # Next.js App Router pages
+├── components/
+│   ├── dashboard/         # Dashboard widgets
+│   ├── incidents/         # Incident management
+│   ├── layout/           # Header, Sidebar components
+│   └── ui/               # Reusable UI components
+├── hooks/                # React Query hooks
+├── lib/                  # Utilities and mock data
+└── types/                # TypeScript definitions
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Development
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The application uses mock data to simulate a real SOC environment with:
+- Security metrics and trends
+- Incident management with severity levels
+- Asset monitoring and response times
+- User authentication simulation
