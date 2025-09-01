@@ -59,7 +59,7 @@ export default function IncidentSummary({
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 gap-4">
-          {summaryItems.map((item, index) => {
+          {summaryItems.map((item) => {
             const Icon = item.icon;
             return (
               <div
