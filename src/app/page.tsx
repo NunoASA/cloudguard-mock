@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
+import { ContentView } from '@/components/layout/ContentView';
 import { Button } from '@/components/ui/button';
-import { TicketModal } from '@/components/dashboard/TicketModal';
-import { Grid } from '@/components/dashboard/Grid';
-import { IncidentsList } from '@/components/incidents/IncidentsList';
+import { TicketModal } from '@/components/TicketModal';
 
 import { useUser } from '@/hooks/useUser';
 
@@ -20,10 +19,10 @@ export default function Dashboard() {
 
   const handleRaiseTicket = useCallback(() => {
     setShowTicketModal(true);
-    setTimeout(() => {
-      setShowTicketModal(false);
-      alert('Ticket creation feature would be implemented here');
-    }, 1000);
+  }, []);
+
+  const handleCloseTicketModal = useCallback(() => {
+    setShowTicketModal(false);
   }, []);
 
   const handleToggleTimeRange = useCallback(() => {
@@ -32,45 +31,6 @@ export default function Dashboard() {
     setTimeRange(ranges[(currentIndex + 1) % ranges.length]);
   }, [timeRange]);
 
-  const view = useMemo(() => {
-    switch (activeView) {
-      case 'dashboard':
-        return (
-          <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
-            <Grid setActiveView={setActiveView}/>
-
-            <TicketModal showTicketModal={showTicketModal} />
-          </main>
-        )
-      
-      case 'incidents':
-        return (
-          <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
-            <IncidentsList />
-          </main>
-        )
-    
-      default:
-        return (
-          <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
-            <div className="text-center py-12">
-              <div className="text-6xl font-bold text-cyan-400 neon-text mb-4">
-                {activeView.charAt(0).toUpperCase() + activeView.slice(1)}
-              </div>
-              <p className="text-gray-400 text-lg">
-                This section is under development. Navigate to Dashboard to see the SOC interface.
-              </p>
-              <Button
-                onClick={() => setActiveView('dashboard')}
-                className="mt-6 bg-cyan-600 hover:bg-cyan-700"
-              >
-                Return to Dashboard
-              </Button>
-            </div>
-          </main>
-        )
-    }
-  }, [activeView, showTicketModal])
   
   if (userLoading) {
     return (
@@ -117,7 +77,14 @@ export default function Dashboard() {
           onToggleTimeRange={handleToggleTimeRange}
           timeRange={timeRange}
         />
-        {view}
+        <ContentView
+          activeView={activeView}
+          setActiveView={setActiveView}
+        />
+        <TicketModal 
+          showTicketModal={showTicketModal} 
+          onClose={handleCloseTicketModal}
+        />
       </div>
     </div>
   );
