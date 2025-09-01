@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { getPriorityColor } from '@/lib/utils';
 import { TicketFormProps } from '@/types/tickets';
 
-export const TicketForm = ({ 
+const TicketForm = ({ 
   formData, 
   onSubmit, 
   onInputChange, 
@@ -148,3 +148,5 @@ export const TicketForm = ({
     </div>
   );
 };
+
+export default TicketForm;

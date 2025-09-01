@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button';
 import { useIncidents } from '@/hooks/useIncidents';
 import { useMetrics } from '@/hooks/useMetrics';
 
-export const Grid = ({ setActiveView } : { setActiveView: (view: string) => void }) => {
+const Grid = ({ setActiveView } : { setActiveView: (view: string) => void }) => {
   const { data: incidents, isLoading: incidentsLoading, error: incidentsError } = useIncidents();
   const { data: metrics, isLoading: metricsLoading, error: metricsError, refetch: refetchMetrics, dataUpdatedAt } = useMetrics();
 
@@ -82,4 +82,6 @@ export const Grid = ({ setActiveView } : { setActiveView: (view: string) => void
     </div>
     </>
   )
-}
+};
+
+export default Grid;

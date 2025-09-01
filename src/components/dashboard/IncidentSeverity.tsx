@@ -12,14 +12,14 @@ interface IncidentSeverityProps {
   };
 }
 
-export default function IncidentSeverity({ data }: IncidentSeverityProps) {
+const IncidentSeverity = ({ data }: IncidentSeverityProps) => {
   const chartData = [
     { name: 'Low', value: data.low, fill: '#10B981' },
     { name: 'Medium', value: data.medium, fill: '#F59E0B' },
     { name: 'High', value: data.high, fill: '#EF4444' },
   ];
 
-  const CustomTooltip = ({ active, payload, label }: { active: boolean, payload: [{ value: string }], label: string  }) => {
+  const CustomTooltip = ({ active, payload, label }: { active?: boolean, payload?: [{ value: string }], label?: string }) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-gray-800 border border-gray-700 rounded-lg p-3 shadow-lg">
@@ -79,4 +79,6 @@ export default function IncidentSeverity({ data }: IncidentSeverityProps) {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default IncidentSeverity;

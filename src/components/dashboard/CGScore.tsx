@@ -12,7 +12,7 @@ interface CGScoreProps {
   trendValue: number;
 }
 
-export default function CGScore({ score, trend, trendValue }: CGScoreProps) {
+const CGScore = ({ score, trend, trendValue }: CGScoreProps) => {
   const getScoreColor = (score: number) => {
     if (score >= 80) return 'text-green-400';
     if (score >= 60) return 'text-yellow-400';
@@ -93,4 +93,6 @@ export default function CGScore({ score, trend, trendValue }: CGScoreProps) {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default CGScore;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const LoadingState = () => {
+const LoadingState = () => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
       <div className="bg-gray-800 border border-orange-500/50 rounded-lg p-8 cyber-glow-orange">
@@ -12,3 +12,5 @@ export const LoadingState = () => {
     </div>
   );
 };
+
+export default LoadingState;

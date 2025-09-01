@@ -11,7 +11,7 @@ interface TriageFeedProps {
   navigateToIncidents: () => void;
 }
 
-export default function TriageFeed({ incidents, navigateToIncidents }: TriageFeedProps) {
+const TriageFeed = ({ incidents, navigateToIncidents }: TriageFeedProps) => {
   const getSeverityColor = (severity: string) => {
     switch (severity) {
       case 'high':
@@ -146,4 +146,6 @@ export default function TriageFeed({ incidents, navigateToIncidents }: TriageFee
       </CardContent>
     </Card>
   );
-}
+};
+
+export default TriageFeed;

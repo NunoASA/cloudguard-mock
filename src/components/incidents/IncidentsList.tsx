@@ -130,7 +130,7 @@ const IncidentCard = ({ incident }: IncidentCardProps) => {
   );
 };
 
-export const IncidentsList = () => {
+const IncidentsList = () => {
   const { data: incidents, isLoading, error, refetch } = useIncidents();
 
   return (
@@ -170,3 +170,5 @@ export const IncidentsList = () => {
     </div>
   );
 };
+
+export default IncidentsList;

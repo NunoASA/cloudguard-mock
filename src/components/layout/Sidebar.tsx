@@ -29,7 +29,7 @@ const sidebarItems = [
   { id: 'settings', label: 'Settings', icon: FiSettings },
 ];
 
-export default function Sidebar({ activeView, onViewChange }: SidebarProps) {
+const Sidebar = ({ activeView, onViewChange }: SidebarProps) => {
   return (
     <>
       {/* Desktop Sidebar */}
@@ -99,4 +99,6 @@ export default function Sidebar({ activeView, onViewChange }: SidebarProps) {
       </nav>
     </>
   );
-}
+};
+
+export default Sidebar;

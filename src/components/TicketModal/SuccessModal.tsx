@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { SuccessModalProps } from '@/types/tickets';
 import { getPriorityColor } from '@/lib/utils';
 
-export const SuccessModal = ({ submittedTicket, onClose }: SuccessModalProps) => {
+const SuccessModal = ({ submittedTicket, onClose }: SuccessModalProps) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <Card className="w-full max-w-lg bg-gray-800 border-green-500/30">
@@ -72,3 +72,5 @@ export const SuccessModal = ({ submittedTicket, onClose }: SuccessModalProps) =>
     </div>
   );
 };
+
+export default SuccessModal;

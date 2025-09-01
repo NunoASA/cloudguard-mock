@@ -14,7 +14,7 @@ interface AssetMonitorProps {
   };
 }
 
-export default function AssetMonitor({ totalAssets, assetBreakdown }: AssetMonitorProps) {
+const AssetMonitor = ({ totalAssets, assetBreakdown }: AssetMonitorProps) => {
   const defaultBreakdown = {
     servers: Math.floor(totalAssets * 0.3),
     workstations: Math.floor(totalAssets * 0.45),
@@ -81,4 +81,6 @@ export default function AssetMonitor({ totalAssets, assetBreakdown }: AssetMonit
       </CardContent>
     </Card>
   );
-}
+};
+
+export default AssetMonitor;

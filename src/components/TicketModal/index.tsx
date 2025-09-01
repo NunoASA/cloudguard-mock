@@ -2,10 +2,11 @@
 "use client";
 
 import React, { useState, useCallback } from 'react';
-import { TicketForm } from './TicketForm';
-import { LoadingState } from './LoadingState';
-import { SuccessModal } from './SuccessModal';
+
 import { TicketData, TicketModalProps } from '@/types/tickets';
+import TicketForm from './TicketForm';
+import LoadingState from './LoadingState';
+import SuccessModal from './SuccessModal';
 
 const defaultValues: TicketData = {
   title: '',
@@ -15,7 +16,7 @@ const defaultValues: TicketData = {
   assignedTo: '',
 };
 
-export const TicketModal = ({ showTicketModal, onClose }: TicketModalProps) => {
+const TicketModal = ({ showTicketModal, onClose }: TicketModalProps) => {
   const [formData, setFormData] = useState<TicketData>(defaultValues);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,3 +75,5 @@ export const TicketModal = ({ showTicketModal, onClose }: TicketModalProps) => {
     />
   );
 };
+
+export default TicketModal;

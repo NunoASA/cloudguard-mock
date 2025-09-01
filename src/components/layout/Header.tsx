@@ -11,7 +11,7 @@ interface HeaderProps {
   timeRange: string;
 }
 
-export default function Header({ user, onRaiseTicket, onToggleTimeRange, timeRange }: HeaderProps) {
+const Header = ({ user, onRaiseTicket, onToggleTimeRange, timeRange }: HeaderProps) => {
   return (
     <header className="bg-gray-900/95 border-b border-cyan-500/20 backdrop-blur-sm h-16 px-2 md:px-6 flex items-center justify-between">
       <div className="flex items-center space-x-4">
@@ -59,4 +59,6 @@ export default function Header({ user, onRaiseTicket, onToggleTimeRange, timeRan
       </div>
     </header>
   );
-}
+};
+
+export default Header;

@@ -7,7 +7,7 @@ interface AutomationGaugeProps {
   automationRate: number;
 }
 
-export default function AutomationGauge({ automationRate }: AutomationGaugeProps) {
+const AutomationGauge = ({ automationRate }: AutomationGaugeProps) => {
   const radius = 80;
   const strokeWidth = 12;
   const normalizedRadius = radius - strokeWidth * 2;
@@ -79,4 +79,6 @@ export default function AutomationGauge({ automationRate }: AutomationGaugeProps
       </CardContent>
     </Card>
   );
-}
+};
+
+export default AutomationGauge;

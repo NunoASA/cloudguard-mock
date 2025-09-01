@@ -9,7 +9,7 @@ interface ResponseTimeProps {
   trend: number; // percentage change
 }
 
-export default function ResponseTime({ mttr, trend }: ResponseTimeProps) {
+const ResponseTime = ({ mttr, trend }: ResponseTimeProps) => {
   const formatTime = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
@@ -105,4 +105,6 @@ export default function ResponseTime({ mttr, trend }: ResponseTimeProps) {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default ResponseTime;

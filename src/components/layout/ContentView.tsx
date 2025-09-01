@@ -1,15 +1,15 @@
 import React from 'react';
 
+import Grid from '@/components/dashboard/Grid';
+import IncidentsList from '@/components/incidents/IncidentsList';
 import { Button } from '@/components/ui/button';
-import { Grid } from '@/components/dashboard/Grid';
-import { IncidentsList } from '@/components/incidents/IncidentsList';
 
 interface ContentViewProps {
   activeView: string;
   setActiveView: (view: string) => void;
 }
 
-export const ContentView = ({
+const ContentView = ({
   activeView,
   setActiveView,
 }: ContentViewProps) => {
@@ -49,3 +49,5 @@ export const ContentView = ({
       );
   }
 };
+
+export default ContentView;

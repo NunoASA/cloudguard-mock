@@ -9,10 +9,12 @@ interface QueryProviderProps {
   children: ReactNode;
 }
 
-export default function QueryProvider({ children }: QueryProviderProps) {
+const QueryProvider = ({ children }: QueryProviderProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
     </QueryClientProvider>
   );
-}
+};
+
+export default QueryProvider;

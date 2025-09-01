@@ -11,12 +11,12 @@ interface IncidentSummaryProps {
   period?: string;
 }
 
-export default function IncidentSummary({ 
+const IncidentSummary = ({ 
   totalInvestigated, 
   totalEscalated, 
   truePositives,
   period = '24h'
-}: IncidentSummaryProps) {
+}: IncidentSummaryProps) => {
   const escalationRate = totalInvestigated > 0 ? (totalEscalated / totalInvestigated) * 100 : 0;
   const truePositiveRate = totalInvestigated > 0 ? (truePositives / totalInvestigated) * 100 : 0;
 
@@ -133,4 +133,6 @@ export default function IncidentSummary({
       </CardContent>
     </Card>
   );
-}
+};
+
+export default IncidentSummary;

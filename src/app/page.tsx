@@ -4,13 +4,13 @@ import React, { useState, useCallback } from 'react';
 
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
-import { ContentView } from '@/components/layout/ContentView';
+import ContentView from '@/components/layout/ContentView';
 import { Button } from '@/components/ui/button';
-import { TicketModal } from '@/components/TicketModal';
+import TicketModal from '@/components/TicketModal';
 
 import { useUser } from '@/hooks/useUser';
 
-export default function Dashboard() {
+const Dashboard = () => {
   const [activeView, setActiveView] = useState('dashboard');
   const [timeRange, setTimeRange] = useState('Last 24 hours');
   const [showTicketModal, setShowTicketModal] = useState(false);
@@ -88,4 +88,6 @@ export default function Dashboard() {
       </div>
     </div>
   );
-}
+};
+
+export default Dashboard;
