@@ -1,10 +1,14 @@
+import { Incident, Metrics, User } from "@/types/types";
 
-export const user = {
-  name: 'Alex Thompson',
+export const user: User = {
+  id: 'user-001',
+  email: 'nuno.almeida@company.com',
+  name: 'Nuno Almeida',
   role: 'SOC Analyst L2',
+  created_at: new Date('2023-01-15T09:30:00Z').toISOString(),
 };
 
-export const metrics = {
+export const metrics: Metrics = {
   cgScore: 78,
   cgTrend: 'up',
   incidentsBySevertiy: { low: 12, medium: 8, high: 3 },
@@ -17,7 +21,7 @@ export const metrics = {
   truePositives: 134,
 };
 
-export const incidents = [
+export const incidents: Incident[] = [
   {
     id: '1',
     title: 'Suspicious Network Traffic Detected',

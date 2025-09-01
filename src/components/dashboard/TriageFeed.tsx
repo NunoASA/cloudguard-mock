@@ -1,9 +1,10 @@
 "use client";
 
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { FiAlertTriangle, FiClock, FiUser } from 'react-icons/fi';
-import { Incident } from '@/types/incident';
+
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Incident } from '@/types/types';
 
 interface TriageFeedProps {
   incidents: Incident[];

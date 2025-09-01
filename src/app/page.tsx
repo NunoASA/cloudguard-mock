@@ -1,24 +1,56 @@
 "use client";
 
 import React, { useState } from 'react';
+
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
-import CGScore from '@/components/dashboard/CGScore';
-import IncidentSeverity from '@/components/dashboard/IncidentSeverity';
-import AutomationGauge from '@/components/dashboard/AutomationGauge';
-import AssetMonitor from '@/components/dashboard/AssetMonitor';
-import TriageFeed from '@/components/dashboard/TriageFeed';
-import ResponseTime from '@/components/dashboard/ResponseTime';
-import IncidentSummary from '@/components/dashboard/IncidentSummary';
 import { Button } from '@/components/ui/button';
-import { FiRefreshCw } from 'react-icons/fi';
+import { TicketModal } from '@/components/dashboard/TicketModal';
+import { Grid } from '@/components/dashboard/Grid';
 
-import { user, incidents, metrics } from '@/lib/mockData';
+import { useUser } from '@/hooks/useUser';
 
 export default function Dashboard() {
   const [activeView, setActiveView] = useState('dashboard');
   const [timeRange, setTimeRange] = useState('Last 24 hours');
   const [showTicketModal, setShowTicketModal] = useState(false);
+  
+  const { data: user, isLoading: userLoading, error: userError } = useUser();
+
+  // Show loading or error state if user data isn't available
+  if (userLoading) {
+    return (
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin w-12 h-12 border-2 border-cyan-400 border-t-transparent rounded-full mx-auto mb-4"></div>
+          <p className="text-cyan-400 text-lg">Loading user data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (userError) {
+    return (
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-400 text-lg mb-4">Failed to load user data</p>
+          <Button onClick={() => window.location.reload()} className="bg-cyan-600 hover:bg-cyan-700">
+            Retry
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-400 text-lg">No user data available</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleRaiseTicket = () => {
     setShowTicketModal(true);
@@ -95,61 +127,10 @@ export default function Dashboard() {
             </div>
           )} */}
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-            {/* Row 1: Core Metrics */}
-            <CGScore
-              score={metrics.cgScore}
-              trend={metrics.cgTrend}
-              trendValue={5.2}
-            />
-            
-            <IncidentSeverity data={metrics.incidentsBySevertiy} />
-            
-            <AutomationGauge automationRate={metrics.automationRate} />
-
-            {/* Row 2: Monitoring & Response */}
-            <AssetMonitor totalAssets={metrics.monitoredAssets} />
-            
-            <ResponseTime 
-              mttr={metrics.mttr}
-              trend={metrics.mttrTrend}
-            />
-            
-            <IncidentSummary
-              totalInvestigated={metrics.totalInvestigated}
-              totalEscalated={metrics.totalEscalated}
-              truePositives={metrics.truePositives}
-            />
-
-            {/* Row 3: Live Feed (Full Width) */}
-            <div className="lg:col-span-2 xl:col-span-3">
-              <TriageFeed incidents={incidents} navigateToIncidents={() => setActiveView('incidents')} />
-            </div>
-          </div>
-
-          {/* Loading Indicator */}
-          {/* {loading && (
-            <div className="fixed bottom-4 right-4">
-              <div className="bg-gray-800 border border-cyan-500/30 rounded-lg p-4 cyber-glow">
-                <div className="flex items-center space-x-3">
-                  <div className="animate-spin w-4 h-4 border-2 border-cyan-400 border-t-transparent rounded-full"></div>
-                  <span className="text-cyan-400">Updating data...</span>
-                </div>
-              </div>
-            </div>
-          )} */}
+          <Grid setActiveView={setActiveView}/>
 
           {/* Ticket Modal Indicator */}
-          {showTicketModal && (
-            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-              <div className="bg-gray-800 border border-orange-500/50 rounded-lg p-6 cyber-glow-orange">
-                <div className="text-center">
-                  <div className="animate-spin w-8 h-8 border-2 border-orange-400 border-t-transparent rounded-full mx-auto mb-4"></div>
-                  <p className="text-orange-400 font-semibold">Creating Ticket...</p>
-                </div>
-              </div>
-            </div>
-          )}
+          <TicketModal showTicketModal={showTicketModal} />
         </main>
       </div>
     </div>

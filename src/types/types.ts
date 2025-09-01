@@ -12,10 +12,23 @@ export interface Incident {
   response_time: number | null;
 }
 
+export interface Metrics {
+  cgScore: number;
+  cgTrend: 'up' | 'down' | 'stable';
+  incidentsBySevertiy: { low: number; medium: number; high: number };
+  automationRate: number;
+  monitoredAssets: number;
+  mttr: number;
+  mttrTrend: number;
+  totalInvestigated: number;
+  totalEscalated: number;
+  truePositives: number;
+}
+
 export interface User {
   id: string;
   email: string;
-  full_name: string | null;
+  name: string | null;
   role: string;
   created_at: string;
 }

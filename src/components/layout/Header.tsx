@@ -2,13 +2,12 @@
 
 import React from 'react';
 import { FiUser, FiBell, FiSettings, FiShield, FiClock } from 'react-icons/fi';
+
 import { Button } from '@/components/ui/button';
+import { User } from '@/types/types';
 
 interface HeaderProps {
-  user?: {
-    name: string;
-    role: string;
-  };
+  user?: User;
   onRaiseTicket: () => void;
   onToggleTimeRange: () => void;
   timeRange: string;

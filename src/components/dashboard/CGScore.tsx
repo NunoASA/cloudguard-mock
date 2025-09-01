@@ -1,12 +1,14 @@
 "use client";
 
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { FiTrendingUp, FiTrendingDown, FiMinus } from 'react-icons/fi';
+
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Metrics } from '@/types/types';
 
 interface CGScoreProps {
   score: number;
-  trend: 'up' | 'down' | 'stable';
+  trend: Metrics["cgTrend"];
   trendValue: number;
 }
 
