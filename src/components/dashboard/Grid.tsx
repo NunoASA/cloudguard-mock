@@ -1,6 +1,3 @@
-
-"use client";
-
 import { FiRefreshCw } from 'react-icons/fi';
 
 import CGScore from '@/components/dashboard/CGScore';

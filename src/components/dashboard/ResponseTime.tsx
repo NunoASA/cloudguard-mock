@@ -47,7 +47,7 @@ export default function ResponseTime({ mttr, trend }: ResponseTimeProps) {
           <span>Mean Time to Respond</span>
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col justify-center h-[90%]">
         <div className="text-center mb-4">
           <div className={`text-4xl font-bold ${status.color} neon-text`}>
             {formatTime(mttr)}

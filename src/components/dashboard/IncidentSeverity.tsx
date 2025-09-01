@@ -39,7 +39,7 @@ export default function IncidentSeverity({ data }: IncidentSeverityProps) {
       <CardHeader>
         <CardTitle>Incident Severity Distribution</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col justify-center h-[90%]">
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>

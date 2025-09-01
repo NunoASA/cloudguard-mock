@@ -20,7 +20,7 @@ export default function AutomationGauge({ automationRate }: AutomationGaugeProps
       <CardHeader>
         <CardTitle>Automation Rate</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col justify-center h-[90%]">
         <div className="flex items-center justify-center">
           <div className="relative">
             <svg

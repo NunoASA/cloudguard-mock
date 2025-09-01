@@ -36,7 +36,7 @@ export default function AssetMonitor({ totalAssets, assetBreakdown }: AssetMonit
       <CardHeader>
         <CardTitle>Monitored Assets</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col justify-center h-[90%]">
         <div className="text-center mb-6">
           <div className="text-5xl font-bold text-green-400 neon-text">
             {totalAssets.toLocaleString()}

@@ -44,8 +44,8 @@ export default function CGScore({ score, trend, trendValue }: CGScoreProps) {
           {getTrendIcon()}
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
+      <CardContent className="flex flex-col justify-center h-[90%]">
+        <div className="flex flex-col items-center justify-center space-y-4">
           <div className="relative">
             <div className="flex items-center justify-center">
               <div className="relative w-32 h-32">

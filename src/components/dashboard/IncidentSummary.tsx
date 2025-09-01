@@ -57,7 +57,7 @@ export default function IncidentSummary({
           <span className="text-sm text-gray-400 font-normal">Last {period}</span>
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col justify-center h-[90%]">
         <div className="grid grid-cols-1 gap-4">
           {summaryItems.map((item) => {
             const Icon = item.icon;
