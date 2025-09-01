@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
 import { Button } from '@/components/ui/button';
 import { TicketModal } from '@/components/dashboard/TicketModal';
 import { Grid } from '@/components/dashboard/Grid';
+import { IncidentsList } from '@/components/incidents/IncidentsList';
 
 import { useUser } from '@/hooks/useUser';
 
@@ -17,7 +18,60 @@ export default function Dashboard() {
   
   const { data: user, isLoading: userLoading, error: userError } = useUser();
 
-  // Show loading or error state if user data isn't available
+  const handleRaiseTicket = useCallback(() => {
+    setShowTicketModal(true);
+    setTimeout(() => {
+      setShowTicketModal(false);
+      alert('Ticket creation feature would be implemented here');
+    }, 1000);
+  }, []);
+
+  const handleToggleTimeRange = useCallback(() => {
+    const ranges = ['Last 24 hours', 'Last 7 days', 'Last 30 days'];
+    const currentIndex = ranges.indexOf(timeRange);
+    setTimeRange(ranges[(currentIndex + 1) % ranges.length]);
+  }, [timeRange]);
+
+  const view = useMemo(() => {
+    switch (activeView) {
+      case 'dashboard':
+        return (
+          <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
+            <Grid setActiveView={setActiveView}/>
+
+            <TicketModal showTicketModal={showTicketModal} />
+          </main>
+        )
+      
+      case 'incidents':
+        return (
+          <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
+            <IncidentsList />
+          </main>
+        )
+    
+      default:
+        return (
+          <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
+            <div className="text-center py-12">
+              <div className="text-6xl font-bold text-cyan-400 neon-text mb-4">
+                {activeView.charAt(0).toUpperCase() + activeView.slice(1)}
+              </div>
+              <p className="text-gray-400 text-lg">
+                This section is under development. Navigate to Dashboard to see the SOC interface.
+              </p>
+              <Button
+                onClick={() => setActiveView('dashboard')}
+                className="mt-6 bg-cyan-600 hover:bg-cyan-700"
+              >
+                Return to Dashboard
+              </Button>
+            </div>
+          </main>
+        )
+    }
+  }, [activeView, showTicketModal])
+  
   if (userLoading) {
     return (
       <div className="h-screen h-dvh max-h-screen bg-gray-900 flex items-center justify-center">
@@ -52,53 +106,6 @@ export default function Dashboard() {
     );
   }
 
-  const handleRaiseTicket = () => {
-    setShowTicketModal(true);
-    // In a real app, this would open a ticket creation modal
-    setTimeout(() => {
-      setShowTicketModal(false);
-      alert('Ticket creation feature would be implemented here');
-    }, 1000);
-  };
-
-  const handleToggleTimeRange = () => {
-    const ranges = ['Last 24 hours', 'Last 7 days', 'Last 30 days'];
-    const currentIndex = ranges.indexOf(timeRange);
-    setTimeRange(ranges[(currentIndex + 1) % ranges.length]);
-  };
-
-  if (activeView !== 'dashboard') {
-    return (
-      <div className="h-screen h-dvh max-h-screen bg-gray-900 flex flex-col lg:flex-row overflow-hidden">
-        <Sidebar activeView={activeView} onViewChange={setActiveView} />
-        <div className="flex-1 flex flex-col">
-          <Header
-            user={user}
-            onRaiseTicket={handleRaiseTicket}
-            onToggleTimeRange={handleToggleTimeRange}
-            timeRange={timeRange}
-          />
-          <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
-            <div className="text-center py-12">
-              <div className="text-6xl font-bold text-cyan-400 neon-text mb-4">
-                {activeView.charAt(0).toUpperCase() + activeView.slice(1)}
-              </div>
-              <p className="text-gray-400 text-lg">
-                This section is under development. Navigate to Dashboard to see the SOC interface.
-              </p>
-              <Button
-                onClick={() => setActiveView('dashboard')}
-                className="mt-6 bg-cyan-600 hover:bg-cyan-700"
-              >
-                Return to Dashboard
-              </Button>
-            </div>
-          </main>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="h-screen h-dvh max-h-screen bg-gray-900 flex flex-col lg:flex-row overflow-hidden">
       <Sidebar activeView={activeView} onViewChange={setActiveView} />
@@ -110,12 +117,7 @@ export default function Dashboard() {
           onToggleTimeRange={handleToggleTimeRange}
           timeRange={timeRange}
         />
-        
-        <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
-          <Grid setActiveView={setActiveView}/>
-
-          <TicketModal showTicketModal={showTicketModal} />
-        </main>
+        {view}
       </div>
     </div>
   );

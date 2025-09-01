@@ -1,6 +1,8 @@
 
 "use client";
 
+import { FiRefreshCw } from 'react-icons/fi';
+
 import CGScore from '@/components/dashboard/CGScore';
 import IncidentSeverity from '@/components/dashboard/IncidentSeverity';
 import AutomationGauge from '@/components/dashboard/AutomationGauge';
@@ -13,7 +15,6 @@ import { Button } from '@/components/ui/button';
 
 import { useIncidents } from '@/hooks/useIncidents';
 import { useMetrics } from '@/hooks/useMetrics';
-import { FiRefreshCw } from 'react-icons/fi';
 
 export const Grid = ({ setActiveView } : { setActiveView: (view: string) => void }) => {
   const { data: incidents, isLoading: incidentsLoading, error: incidentsError } = useIncidents();

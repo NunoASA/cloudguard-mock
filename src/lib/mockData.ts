@@ -119,11 +119,6 @@ export const metricsData: Metrics[] = [
   },
 ];
 
-export const getRandomMetrics = (): Metrics => {
-  const randomIndex = Math.floor(Math.random() * metricsData.length);
-  return metricsData[randomIndex];
-};
-
 export const incidents: Incident[] = [
   {
     id: '1',
@@ -204,3 +199,14 @@ export const incidents: Incident[] = [
     response_time: 2,
   },
 ]
+
+export const getRandomMetrics = (): Metrics => {
+  const randomIndex = Math.floor(Math.random() * metricsData.length);
+  return metricsData[randomIndex];
+};
+
+export const getRandomIncidents = (): Incident[] => {
+  const shuffled = [...incidents].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 3);
+};
+
