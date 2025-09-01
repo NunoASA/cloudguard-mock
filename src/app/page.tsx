@@ -112,24 +112,8 @@ export default function Dashboard() {
         />
         
         <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
-          {/* {error && (
-            <div className="mb-6 p-4 bg-red-900/50 border border-red-500/50 rounded-lg text-red-400">
-              Error: {error}
-              <Button
-                onClick={refreshData}
-                variant="outline"
-                size="sm"
-                className="ml-4"
-              >
-                <FiRefreshCw className="w-4 h-4 mr-2" />
-                Retry
-              </Button>
-            </div>
-          )} */}
-
           <Grid setActiveView={setActiveView}/>
 
-          {/* Ticket Modal Indicator */}
           <TicketModal showTicketModal={showTicketModal} />
         </main>
       </div>

@@ -9,16 +9,35 @@ import TriageFeed from '@/components/dashboard/TriageFeed';
 import ResponseTime from '@/components/dashboard/ResponseTime';
 import IncidentSummary from '@/components/dashboard/IncidentSummary';
 import { LoadingCard } from '@/components/ui/LoadingCard';
+import { Button } from '@/components/ui/button';
 
 import { useIncidents } from '@/hooks/useIncidents';
 import { useMetrics } from '@/hooks/useMetrics';
+import { FiRefreshCw } from 'react-icons/fi';
 
 export const Grid = ({ setActiveView } : { setActiveView: (view: string) => void }) => {
   const { data: incidents, isLoading: incidentsLoading, error: incidentsError } = useIncidents();
-  const { data: metrics, isLoading: metricsLoading, error: metricsError } = useMetrics();
+  const { data: metrics, isLoading: metricsLoading, error: metricsError, refetch: refetchMetrics, dataUpdatedAt } = useMetrics();
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
+    <>
+      {/* Refresh Button and Timestamp */}
+      <div className="mb-4 flex justify-between items-center">
+        <div className="text-sm text-gray-400">
+          Last updated: {dataUpdatedAt ? new Date(dataUpdatedAt).toLocaleTimeString() : 'Never'}
+        </div>
+        <Button
+          onClick={() => refetchMetrics()}
+          variant="outline"
+          size="sm"
+          className="border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10"
+        >
+          <FiRefreshCw className="w-4 h-4 mr-2" />
+          Refresh Data
+        </Button>
+      </div>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
       {/* Row 1: Core Metrics */}
       <LoadingCard isLoading={metricsLoading} error={!!metricsError}>
         <CGScore
@@ -63,5 +82,6 @@ export const Grid = ({ setActiveView } : { setActiveView: (view: string) => void
         </LoadingCard>
       </div>
     </div>
+    </>
   )
 }
