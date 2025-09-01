@@ -20,7 +20,7 @@ export default function Dashboard() {
   // Show loading or error state if user data isn't available
   if (userLoading) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="h-screen h-dvh max-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin w-12 h-12 border-2 border-cyan-400 border-t-transparent rounded-full mx-auto mb-4"></div>
           <p className="text-cyan-400 text-lg">Loading user data...</p>
@@ -31,7 +31,7 @@ export default function Dashboard() {
 
   if (userError) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="h-screen h-dvh max-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-400 text-lg mb-4">Failed to load user data</p>
           <Button onClick={() => window.location.reload()} className="bg-cyan-600 hover:bg-cyan-700">
@@ -44,7 +44,7 @@ export default function Dashboard() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+      <div className="h-screen h-dvh max-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-400 text-lg">No user data available</p>
         </div>
@@ -69,16 +69,16 @@ export default function Dashboard() {
 
   if (activeView !== 'dashboard') {
     return (
-      <div className="min-h-screen bg-gray-900 flex">
+      <div className="h-screen h-dvh max-h-screen bg-gray-900 flex flex-col lg:flex-row overflow-hidden">
         <Sidebar activeView={activeView} onViewChange={setActiveView} />
-        <div className="flex-1">
+        <div className="flex-1 flex flex-col">
           <Header
             user={user}
             onRaiseTicket={handleRaiseTicket}
             onToggleTimeRange={handleToggleTimeRange}
             timeRange={timeRange}
           />
-          <main className="p-6">
+          <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
             <div className="text-center py-12">
               <div className="text-6xl font-bold text-cyan-400 neon-text mb-4">
                 {activeView.charAt(0).toUpperCase() + activeView.slice(1)}
@@ -100,10 +100,10 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 flex">
+    <div className="h-screen h-dvh max-h-screen bg-gray-900 flex flex-col lg:flex-row overflow-hidden">
       <Sidebar activeView={activeView} onViewChange={setActiveView} />
       
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col h-full max-h-full">
         <Header
           user={user}
           onRaiseTicket={handleRaiseTicket}
@@ -111,7 +111,7 @@ export default function Dashboard() {
           timeRange={timeRange}
         />
         
-        <main className="p-6">
+        <main className="flex-1 p-4 pb-24 lg:p-6 lg:pb-6 overflow-y-auto overflow-x-hidden scrollable-content">
           {/* {error && (
             <div className="mb-6 p-4 bg-red-900/50 border border-red-500/50 rounded-lg text-red-400">
               Error: {error}

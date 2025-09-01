@@ -18,7 +18,7 @@ export const Grid = ({ setActiveView } : { setActiveView: (view: string) => void
   const { data: metrics, isLoading: metricsLoading, error: metricsError } = useMetrics();
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
       {/* Row 1: Core Metrics */}
       <LoadingCard isLoading={metricsLoading} error={!!metricsError}>
         <CGScore
